@@ -7,6 +7,6 @@ import java.util.*
 class Utils {
     @SuppressLint("SimpleDateFormat")
     fun toSimpleString(date: Date): String {
-        return SimpleDateFormat("EEE, dd MM yyy").format(date)
+        return SimpleDateFormat("EEE, dd MMM yyy").format(date)
     }
 }
