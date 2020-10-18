@@ -1,0 +1,47 @@
+package com.example.viewmodel
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: MainViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        displayResult()
+
+        btn_calculate.setOnClickListener {
+            val width = edt_width.text.toString().trim()
+            val height = edt_height.text.toString().trim()
+            val length = edt_length.text.toString().trim()
+            when {
+                width.isEmpty() -> {
+                    edt_width.error = "Masih kosong"
+                }
+                height.isEmpty() -> {
+                    edt_height.error = "Masih kosong"
+                }
+                length.isEmpty() -> {
+                    edt_length.error = "Masih kosong"
+                }
+                else -> {
+                    viewModel.calculate(width, height, length)
+                    displayResult()
+                }
+
+            }
+        }
+
+    }
+
+    private fun displayResult() {
+        tv_result.text = viewModel.result.toString()
+    }
+}
