@@ -1,8 +1,9 @@
-package com.example.academy
+package com.example.academy.ui.reader
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.academy.ui.reader.CourseReaderCallback
+import com.example.academy.R
+import com.example.academy.ui.reader.content.ModuleContentFragment
 import com.example.academy.ui.reader.list.ModuleListFragment
 
 class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
@@ -24,6 +25,22 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
         }
     }
 
+    override fun moveTo(position: Int, moduleId: String) {
+        val fragment = ModuleContentFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.frame_container, fragment, ModuleContentFragment.TAG)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount <= 1) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     private fun populateFragment() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         var fragment = supportFragmentManager.findFragmentByTag(ModuleListFragment.TAG)
@@ -33,9 +50,5 @@ class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
             fragmentTransaction.addToBackStack(null)
         }
         fragmentTransaction.commit()
-    }
-
-    override fun moveTo(position: Int, moduleId: String) {
-        TODO("Not yet implemented")
     }
 }

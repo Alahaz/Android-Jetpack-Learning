@@ -28,7 +28,7 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
         if (activity != null) {
             val courses = DataDummy.generateDummyCourses()
             val adapter = BookmarkAdapter(this)
-            adapter.setCourse(courses)
+            adapter.setCourses(courses)
             with(rv_bookmark) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)

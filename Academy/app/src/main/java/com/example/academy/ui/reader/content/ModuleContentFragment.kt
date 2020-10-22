@@ -10,8 +10,10 @@ import com.example.academy.data.ContentEntity
 import kotlinx.android.synthetic.main.fragment_module_content.*
 
 class ModuleContentFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    companion object {
+        val TAG = ModuleContentFragment::class.java.simpleName
+        fun newInstance(): ModuleContentFragment = ModuleContentFragment()
     }
 
     override fun onCreateView(
@@ -32,14 +34,7 @@ class ModuleContentFragment : Fragment() {
     }
 
     private fun populateWebView(content: ContentEntity) {
-        content.content?.let { web_view.loadData(it, "text/html", "UTF-8") }
-
+        web_view.loadData(content.content, "text/html", "UTF-8")
     }
 
-    companion object {
-        val TAG = ModuleContentFragment::class.java.simpleName
-        fun newInstance(): ModuleContentFragment {
-            return ModuleContentFragment()
-        }
-    }
 }

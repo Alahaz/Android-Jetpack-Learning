@@ -15,12 +15,12 @@ import kotlinx.android.synthetic.main.items_bookmark.view.*
 class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
     RecyclerView.Adapter<BookmarkAdapter.CourseViewHolder>() {
 
-    private val listCourse = ArrayList<CourseEntity>()
+    private val listCourses = ArrayList<CourseEntity>()
 
-    fun setCourse(courses: List<CourseEntity>?) {
+    fun setCourses(courses: List<CourseEntity>?) {
         if (courses == null) return
-        listCourse.clear()
-        listCourse.addAll(courses)
+        listCourses.clear()
+        listCourses.addAll(courses)
     }
 
     inner class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -55,9 +55,9 @@ class BookmarkAdapter(private val callback: BookmarkFragmentCallback) :
     }
 
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
-        val course = listCourse[position]
+        val course = listCourses[position]
         holder.bind(course)
     }
 
-    override fun getItemCount(): Int = listCourse.size
+    override fun getItemCount(): Int = listCourses.size
 }

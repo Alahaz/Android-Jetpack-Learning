@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.academy.CourseReaderActivity
 import com.example.academy.R
 import com.example.academy.data.CourseEntity
+import com.example.academy.ui.reader.CourseReaderActivity
 import com.example.academy.utils.DataDummy
 import kotlinx.android.synthetic.main.activity_detail_course.*
 import kotlinx.android.synthetic.main.content_detail_course.*
@@ -46,7 +46,7 @@ class DetailCourseActivity : AppCompatActivity() {
 
         with(rv_module) {
             isNestedScrollingEnabled = false
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(this@DetailCourseActivity)
             setHasFixedSize(true)
             this.adapter = adapter
             val dividerItemDecoration =
@@ -67,9 +67,8 @@ class DetailCourseActivity : AppCompatActivity() {
             )
             .into(image_poster)
         btn_start.setOnClickListener {
-            val intent = Intent(this@DetailCourseActivity, CourseReaderActivity::class.java).apply {
-                putExtra(CourseReaderActivity.EXTRA_COURSE_ID, course.courseId)
-            }
+            val intent = Intent(this@DetailCourseActivity, CourseReaderActivity::class.java)
+            intent.putExtra(CourseReaderActivity.EXTRA_COURSE_ID, course.courseId)
             startActivity(intent)
         }
     }

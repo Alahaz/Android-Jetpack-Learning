@@ -10,18 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Academy">
-        <activity android:name=".TestSaja"></activity>
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.detail.DetailCourseActivity"
             android:label="@string/title_activity_detail_course"
             android:parentActivityName=".ui.home.HomeActivity"
-            android:theme="@style/Theme.Academy.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.home.HomeActivity" />
         </activity>
-        <activity android:name=".CourseReaderActivity" />
+        <activity android:name=".ui.reader.CourseReaderActivity" />
         <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

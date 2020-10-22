@@ -10,22 +10,12 @@ import com.example.academy.data.ModuleEntity
 
 class ModuleListAdapter internal constructor(private val listener: MyAdapterClickListener) :
     RecyclerView.Adapter<ModuleListAdapter.ModuleViewHolder>() {
-
     private val listModules = ArrayList<ModuleEntity>()
 
     internal fun setModules(modules: List<ModuleEntity>?) {
         if (modules == null) return
-        listModules.clear()
-        listModules.addAll(modules)
-    }
-
-    class ModuleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textTitle: TextView = itemView.findViewById(R.id.text_module_title)
-
-        fun bind(module: ModuleEntity) {
-            textTitle.text = module.title
-        }
-
+        this.listModules.clear()
+        this.listModules.addAll(modules)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModuleViewHolder {
@@ -38,13 +28,27 @@ class ModuleListAdapter internal constructor(private val listener: MyAdapterClic
         val module = listModules[position]
         holder.bind(module)
         holder.itemView.setOnClickListener {
-            listener.onItemClicked(holder.adapterPosition, listModules[position].moduleId)
+            listener.onItemClicked(
+                holder.adapterPosition,
+                listModules[holder.adapterPosition].moduleId
+            )
         }
     }
 
     override fun getItemCount(): Int = listModules.size
+
+    inner class ModuleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val textTitle: TextView = itemView.findViewById(R.id.text_module_title)
+
+        fun bind(module: ModuleEntity) {
+            textTitle.text = module.title
+        }
+
+    }
+
 }
 
-interface MyAdapterClickListener {
+internal interface MyAdapterClickListener {
     fun onItemClicked(position: Int, moduleId: String)
 }
+
