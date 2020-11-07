@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.academy.R
+import com.example.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_academy.*
 
 
@@ -25,9 +26,10 @@ class AcademyFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
+            val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[AcademyViewModel::class.java]
             val courses = viewModel.getCourse()
             val academyAdapter = AcademyAdapter()

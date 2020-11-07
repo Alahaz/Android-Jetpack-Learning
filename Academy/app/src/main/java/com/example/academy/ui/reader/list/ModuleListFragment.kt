@@ -14,6 +14,7 @@ import com.example.academy.data.ModuleEntity
 import com.example.academy.ui.reader.CourseReaderActivity
 import com.example.academy.ui.reader.CourseReaderCallback
 import com.example.academy.ui.reader.CourseReaderViewModel
+import com.example.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_academy.progress_bar
 import kotlinx.android.synthetic.main.fragment_module_list.*
 
@@ -39,9 +40,10 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val factory = ViewModelFactory.getInstance(requireActivity())
         viewModel = ViewModelProvider(
             requireActivity(),
-            ViewModelProvider.NewInstanceFactory()
+            factory
         )[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
         populateRecyclerView(viewModel.getModules())

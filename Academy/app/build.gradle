@@ -72,4 +72,6 @@ dependencies {
 
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
 }
