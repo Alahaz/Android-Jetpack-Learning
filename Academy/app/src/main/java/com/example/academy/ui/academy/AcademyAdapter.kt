@@ -16,7 +16,7 @@ class AcademyAdapter : RecyclerView.Adapter<AcademyAdapter.CourseViewHolder>() {
 
     private var listCourses = ArrayList<CourseEntity>()
 
-    fun setCourses(courses: List<CourseEntity>?) {
+    fun setCourses(courses: List<CourseEntity>) {
         if (courses == null) return
         listCourses.clear()
         listCourses.addAll(courses)

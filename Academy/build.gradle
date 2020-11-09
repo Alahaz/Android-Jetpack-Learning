@@ -39,4 +39,5 @@ ext {
     glideVersion = '4.10.0'
     androidXTestVersion = '1.2.0'
     mockitoVersion = '2.23.4'
+    mockitoKotlinVersion = '2.1.0'
 }

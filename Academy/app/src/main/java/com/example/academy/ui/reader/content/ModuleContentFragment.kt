@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.academy.R
 import com.example.academy.data.ModuleEntity
@@ -35,8 +36,13 @@ class ModuleContentFragment : Fragment() {
                 requireActivity(),
                 factory
             )[CourseReaderViewModel::class.java]
-            val module = viewModel.getSelectedModule()
-            populateWebView(module)
+            progress_bar.visibility = View.VISIBLE
+            viewModel.getSelectedModule().observe(viewLifecycleOwner, Observer { module ->
+                if (module != null) {
+                    progress_bar.visibility = View.GONE
+                    populateWebView(module)
+                }
+            })
         }
     }
 
